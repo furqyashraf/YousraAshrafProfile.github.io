@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yousra Ashraf | Philanthropy Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --light-blue: #dbeafe;
+            --dark-blue: #0c2a6d;
+            --accent: #f59e0b;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --section-bg: rgba(255, 255, 255, 0.85);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background-color: #f1f5f9;
+        }
+        
+        /* Updated Hero Section with your background photo */
+        .hero {
+            min-height: 100vh;
+            background: url('hero-background.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            color: var(--text-light);
+        }
+        
+        /* Add a dark overlay for better text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .target-statement {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .target-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        /* Navigation buttons */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        
+        .nav-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            min-width: 200px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .nav-btn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .download-btn {
+            background: var(--accent);
+            border-color: var(--accent);
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+        
+        .download-btn:hover {
+            background: #d97706;
+            border-color: #d97706;
+        }
+        
+        /* Sections styling */
+        .section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        /* Custom background images for all sections */
+        #areas {
+            background-image: url('areas-background.jpg');
+        }
+        
+        #experience {
+            background-image: url('experience-background.jpg');
+        }
+        
+        #education {
+            background-image: url('education-background.jpg');
+        }
+        
+        #research {
+            background-image: url('research-background.jpg');
+        }
+        
+        #publications {
+            background-image: url('publications-background.jpg');
+        }
+        
+        #interests {
+            background-image: url('interests-background.jpg');
+        }
+        
+        #contact {
+            background-image: url('contact-background.jpg');
+        }
+        
+        /* Section overlays with colors */
+        #areas::before {
+            background: rgba(86, 41, 129, 0.85); /* Deep purple overlay */
+        }
+        
+        #experience::before {
+            background: rgba(30, 58, 138, 0.85); /* Blue overlay */
+        }
+        
+        #education::before {
+            background: rgba(75, 107, 47, 0.85); /* Green overlay */
+        }
+        
+        #research::before {
+            background: rgba(109, 40, 117, 0.85); /* Purple overlay */
+        }
+        
+        #publications::before {
+            background: rgba(181, 56, 30, 0.85); /* Red overlay */
+        }
+        
+        #interests::before {
+            background: rgba(23, 107, 135, 0.85); /* Teal overlay */
+        }
+        
+        #contact::before {
+            background: rgba(146, 84, 14, 0.85); /* Brown overlay */
+        }
+        
+        /* Section content styling */
+        .section-content {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px);
+            color: white;
+        }
+        
+        /* Experience cards */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .experience-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(5px);
+        }
+        
+        .exp-title {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .exp-meta {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        /* Profile image styling */
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        /* Contact section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .nav-btn {
+                min-width: 170px;
+                padding: 0.9rem 1.7rem;
+                font-size: 0.95rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .section-content {
+                padding: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="profile-container">
+                <img src="profile.jpg" alt="Yusra Ashraf" class="profile-img">
+            </div>
+            <h1 class="name animate">Yousra Ashraf</h1>
+            <p class="tagline animate delay-1">Lecturer & Philanthropy Researcher</p>
+            
+            <div class="intro-text animate delay-2">
+                <p>Exploring philanthropy through unconventional lenses—travel, storytelling, and identity—with special attention to global giving patterns.</p>
+                <div class="target-statement animate delay-3">
+                    <i class="fas fa-bullseye target-icon"></i>
+                    <span>Avid researcher exploring philanthropy through unconventional lenses with special attention to global giving patterns</span>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn animate delay-1" onclick="scrollToSection('areas')">Areas of Research</button>
+                <button class="nav-btn animate delay-1" onclick="scrollToSection('experience')">Experience</button>
+                <button class="nav-btn animate delay-1" onclick="scrollToSection('education')">Education</button>
+                <button class="nav-btn animate delay-2" onclick="scrollToSection('research')">Research</button>
+                <button class="nav-btn animate delay-2" onclick="scrollToSection('publications')">Publications</button>
+                <button class="nav-btn animate delay-3" onclick="scrollToSection('interests')">Interests</button>
+                <button class="nav-btn animate delay-3" onclick="scrollToSection('contact')">Contact</button>
+                <button class="nav-btn download-btn animate delay-3" onclick="downloadCV()">
+                    <i class="fas fa-download"></i> Download CV
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Areas of Research Section -->
+    <section class="section" id="areas">
+        <div class="section-content">
+            <h2 class="section-title">Areas of Research</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">Primary Research Areas</h3>
+                <ul>
+                    <li>Philanthropy in the Global South</li>
+                    <li>Muslim Charitable Traditions</li>
+                    <li>Postcolonial Humanitarianism</li>
+                    <li>Refugee Zakat and Power</li>
+                    <li>Ethics of Nonprofit Governance</li>
+                    <li>Spectropolitics of Aid and Displacement</li>
+                    <li>Climate Justice and Faith-Based Giving</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">Current Projects</h3>
+                <ul>
+                    <li>Refugee power and ghostly humanitarianism: An interpretive meta-analysis of Muslim NGOs</li>
+                    <li>Comparative studies of Muslim volunteering traditions</li>
+                    <li>Postcolonial approaches to humanitarian aid</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="section-content">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="experience-grid">
+                <div class="experience-card animate delay-1">
+                    <h3 class="exp-title">Lecturer, English Literature</h3>
+                    <p class="exp-meta">University of Lahore | 2023-Present</p>
+                    <ul>
+                        <li>Courses taught: Functional English, Introduction to English Literature, Contemporary Literary Theory</li>
+                        <li>Curriculum development and student mentoring</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-card animate delay-2">
+                    <h3 class="exp-title">Teacher, English</h3>
+                    <p class="exp-meta">The City School | 2020-2023</p>
+                    <ul>
+                        <li>Classroom instruction and student assessment</li>
+                        <li>Developed innovative teaching methodologies</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-card animate delay-3">
+                    <h3 class="exp-title">Facilitator & Curriculum Developer</h3>
+                    <p class="exp-meta">STEM Schooling & Multiple NGOs | 2019-2022</p>
+                    <ul>
+                        <li>Educational program development</li>
+                        <li>Workshop facilitation and training</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="section-content">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">M.A in Philanthropy</h3>
+                <p class="exp-meta">Lilly Family School of Philanthropy, Indianapolis University</p>
+                <p>Focus on global giving patterns and nonprofit governance</p>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">M.Phil in English Literature</h3>
+                <p class="exp-meta">COMSATS Lahore</p>
+                <p>Specialized in spectral geographies, eco-criticism & war trauma</p>
+            </div>
+            
+            <div class="experience-card animate delay-3">
+                <h3 class="exp-title">B.A Hons in English Literature & Mass Comm.</h3>
+                <p class="exp-meta">FCCU Lahore | Cum Laude</p>
+                <p>Distinctions in Postcolonial Literature and Research Methods</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Research Section -->
+    <section class="section" id="research">
+        <div class="section-content">
+            <h2 class="section-title">Research Portfolio</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">Research Focus</h3>
+                <ul>
+                    <li>Philanthropy in the Global South</li>
+                    <li>Muslim Charitable Traditions</li>
+                    <li>Postcolonial Humanitarianism</li>
+                    <li>Refugee Zakat and Power</li>
+                    <li>Ethics of Nonprofit Governance</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">Methodologies</h3>
+                <ul>
+                    <li>Qualitative Research</li>
+                    <li>Discourse Analysis</li>
+                    <li>Comparative Studies</li>
+                    <li>Meta-analysis</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Publications Section -->
+    <section class="section" id="publications">
+        <div class="section-content">
+            <h2 class="section-title">Publications</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">Journal Articles</h3>
+                <ul>
+                    <li>Refugee power and ghostly humanitarianism: An interpretive meta-analysis of Muslim NGOs (Forthcoming)</li>
+                    <li>A comparative analysis of gender and educational leadership in Pakistan and the United Kingdom (2021)</li>
+                    <li>Consciousness Raising in the New Woman of Shobhaa De's novels (2020)</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">Conference Presentations</h3>
+                <ul>
+                    <li>"Echoes in the Ether: Proto-Cybergothic Landscapes" - International Conference on Digital Landscapes (2024)</li>
+                    <li>"Corpus-Assisted Ideological Discourse of Ismat Chughtai's All for a Husband" (2021)</li>
+                    <li>"Stylistic Analysis of Adjective Use in OpIndia's Anti-Muslim News Headlines" (2021)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Interests Section -->
+    <section class="section" id="interests">
+        <div class="section-content">
+            <h2 class="section-title">Areas of Interest</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">Theoretical Interests</h3>
+                <ul>
+                    <li>Spectropolitics of Aid and Displacement</li>
+                    <li>Climate Justice and Faith-Based Giving</li>
+                    <li>Ethics of International Nonprofit Governance</li>
+                    <li>Muslim Volunteering Traditions</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">Analytical Expertise</h3>
+                <ul>
+                    <li>Qualitative & Quantitative Analysis</li>
+                    <li>Academic & Editorial Writing</li>
+                    <li>NVivo, SPSS, Voyant Tools</li>
+                    <li>APA/MLA Formatting</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-content">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item animate delay-1">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Phone</h3>
+                    <p>+1 646 643 9957</p>
+                </div>
+                
+                <div class="contact-item animate delay-2">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p>yusra.ashraf.ghuman@gmail.com</p>
+                </div>
+                
+                <div class="contact-item animate delay-1">
+                    <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+                    <h3>Instagram</h3>
+                    <p>@yusra_research</p>
+                </div>
+                
+                <div class="contact-item animate delay-2">
+                    <div class="contact-icon"><i class="fab fa-facebook-f"></i></div>
+                    <h3>Facebook</h3>
+                    <p>facebook.com/yusra.researcher</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Smooth scrolling with error handling
+        function scrollToSection(sectionId) {
+            try {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            } catch (error) {
+                console.error("Scrolling error:", error);
+                const element = document.getElementById(sectionId);
+                if (element) element.scrollIntoView();
+            }
+        }
+        
+        // Download CV function
+        function downloadCV() {
+            const cvUrl = 'Yusra_CV_NEW.pdf';
+            const link = document.createElement('a');
+            link.href = cvUrl;
+            link.download = 'Yusra_Ashraf_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Animate sections when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.section-content, .experience-card, .contact-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
