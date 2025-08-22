@@ -11,7 +11,7 @@
             --primary-blue: #1e3a8a;
             --light-blue: #dbeafe;
             --dark-blue: #0c2a6d;
-            --accent: #f59e0b;
+            --accent: #8B0000; /* Changed from orange to maroon */
             --text-dark: #1e293b;
             --text-light: #f8fafc;
             --section-bg: rgba(255, 255, 255, 0.85);
@@ -142,8 +142,8 @@
         }
         
         .download-btn:hover {
-            background: #d97706;
-            border-color: #d97706;
+            background: #600000;
+            border-color: #600000;
         }
         
         /* Sections styling */
@@ -181,16 +181,24 @@
             background-image: url('education-background.jpg');
         }
         
+        #certifications {
+            background-image: url('certifications-background.jpg');
+        }
+        
+        #awards {
+            background-image: url('awards-background.jpg');
+        }
+        
+        #projects {
+            background-image: url('projects-background.jpg');
+        }
+        
         #research {
             background-image: url('research-background.jpg');
         }
         
         #publications {
             background-image: url('publications-background.jpg');
-        }
-        
-        #interests {
-            background-image: url('interests-background.jpg');
         }
         
         #contact {
@@ -210,16 +218,24 @@
             background: rgba(75, 107, 47, 0.85); /* Green overlay */
         }
         
-        #research::before {
+        #certifications::before {
+            background: rgba(109, 76, 65, 0.85); /* Brown overlay */
+        }
+        
+        #awards::before {
+            background: rgba(181, 137, 0, 0.85); /* Gold overlay */
+        }
+        
+        #projects::before {
             background: rgba(109, 40, 117, 0.85); /* Purple overlay */
+        }
+        
+        #research::before {
+            background: rgba(23, 85, 121, 0.85); /* Teal overlay */
         }
         
         #publications::before {
             background: rgba(181, 56, 30, 0.85); /* Red overlay */
-        }
-        
-        #interests::before {
-            background: rgba(23, 107, 135, 0.85); /* Teal overlay */
         }
         
         #contact::before {
@@ -321,6 +337,66 @@
             margin-bottom: 1rem;
         }
         
+        /* Project images styling - Increased size */
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 250px; /* Increased from 180px */
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .project-img:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+        
+        /* Modal for image popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            animation: zoom 0.6s;
+        }
+        
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -340,6 +416,10 @@
         @media (max-width: 992px) {
             .experience-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .project-images {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -369,6 +449,14 @@
             .section-title {
                 font-size: 2.3rem;
             }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-img {
+                height: 220px;
+            }
         }
     </style>
 </head>
@@ -391,27 +479,32 @@
             </div>
             
             <div class="nav-buttons">
-                <button class="nav-btn animate delay-1" onclick="scrollToSection('areas')">Areas of Research</button>
+                <button class="nav-btn animate delay-1" onclick="scrollToSection('areas')">Research Areas & Interests</button>
                 <button class="nav-btn animate delay-1" onclick="scrollToSection('experience')">Experience</button>
                 <button class="nav-btn animate delay-1" onclick="scrollToSection('education')">Education</button>
+                <button class="nav-btn animate delay-1" onclick="scrollToSection('certifications')">Certifications</button>
+                <button class="nav-btn animate delay-1" onclick="scrollToSection('awards')">Awards</button>
+                <button class="nav-btn animate delay-2" onclick="scrollToSection('projects')">Projects</button>
                 <button class="nav-btn animate delay-2" onclick="scrollToSection('research')">Research</button>
                 <button class="nav-btn animate delay-2" onclick="scrollToSection('publications')">Publications</button>
-                <button class="nav-btn animate delay-3" onclick="scrollToSection('interests')">Interests</button>
                 <button class="nav-btn animate delay-3" onclick="scrollToSection('contact')">Contact</button>
                 <button class="nav-btn download-btn animate delay-3" onclick="downloadCV()">
                     <i class="fas fa-download"></i> Download CV
+                </button>
+                <button class="nav-btn download-btn animate delay-3" onclick="downloadCaseStudy()">
+                    <i class="fas fa-file-download"></i> Case Study PDF
                 </button>
             </div>
         </div>
     </section>
     
-    <!-- Areas of Research Section -->
+    <!-- Combined Areas of Research & Interest Section -->
     <section class="section" id="areas">
         <div class="section-content">
-            <h2 class="section-title">Areas of Research</h2>
+            <h2 class="section-title">Research Areas & Interests</h2>
             
             <div class="experience-card animate delay-1">
-                <h3 class="exp-title">Primary Research Areas</h3>
+                <h3 class="exp-title">Research Areas</h3>
                 <ul>
                     <li>Philanthropy in the Global South</li>
                     <li>Muslim Charitable Traditions</li>
@@ -424,6 +517,20 @@
             </div>
             
             <div class="experience-card animate delay-2">
+                <h3 class="exp-title">Areas of Interest</h3>
+                <ul>
+                    <li>Spectropolitics of Aid and Displacement</li>
+                    <li>Climate Justice and Faith-Based Giving</li>
+                    <li>Ethics of International Nonprofit Governance</li>
+                    <li>Muslim Volunteering Traditions</li>
+                    <li>Qualitative & Quantitative Analysis</li>
+                    <li>Academic & Editorial Writing</li>
+                    <li>NVivo, SPSS, Voyant Tools</li>
+                    <li>APA/MLA Formatting</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-3">
                 <h3 class="exp-title">Current Projects</h3>
                 <ul>
                     <li>Refugee power and ghostly humanitarianism: An interpretive meta-analysis of Muslim NGOs</li>
@@ -495,6 +602,90 @@
         </div>
     </section>
     
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <div class="section-content">
+            <h2 class="section-title">Certifications & Professional Training</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">2024</h3>
+                <ul>
+                    <li>Gender & Feminist Theory – MITx</li>
+                    <li>Safer Society for Children – US Embassy</li>
+                    <li>Counter Human Trafficking in Southeast Asia – Global Rights Campus</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">2023</h3>
+                <ul>
+                    <li>Zakat Foundation Institute Fellowship</li>
+                </ul>
+            </div>
+            
+            <div class="experience-card animate delay-3">
+                <h3 class="exp-title">2020</h3>
+                <ul>
+                    <li>TESOL Methodology – University of Maryland, Baltimore County (US State Dept.)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Awards Section -->
+    <section class="section" id="awards">
+        <div class="section-content">
+            <h2 class="section-title">Awards and Honors</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">2022</h3>
+                <p>National Micro-Grant Recipient, Teacher-Led English Pedagogy, PDNET Program organized by the Regional English Language Office (RELO)</p>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">2018</h3>
+                <p>Graduated Cum Laude – FCCU</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="section-content">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="experience-card animate delay-1">
+                <h3 class="exp-title">Project 1: Review of Muslim Volunteering in the West</h3>
+                <p class="exp-meta">Between Islamic Ethos and Citizenship</p>
+                <p>At Indiana University's Journal of Muslim Philanthropy & Civil Society, I authored a critical book review of Peucker and Kayikci's text on Muslim volunteering and civic identity. My role involved deep comparative analysis across case studies from Germany, the UK, and Australia, emphasizing how Islamic principles like Khidma intersect with notions of citizenship and civic belonging.</p>
+                <p>Through close reading and thematic synthesis, I highlighted the dual motivational framework—religious duty and civic engagement—while offering constructive critique on analytical gaps related to theoretical depth and structural marginalization. The resulting review enhanced scholarly understanding of Muslim philanthropic practice and contributed to broader discourse on integration within Western civic spaces.</p>
+                <p><a href="https://scholarworks.iu.edu/iupjournals/index.php/muslimphilanthropy/article/view/8222" target="_blank" style="color: var(--accent);">View Publication</a></p>
+                
+                <!-- Project 1 Images -->
+                <div class="project-images">
+                    <img src="project1-img1.jpg" alt="Muslim Volunteering Research" class="project-img" onclick="openModal(this)">
+                    <img src="project1-img2.jpg" alt="Comparative Analysis" class="project-img" onclick="openModal(this)">
+                    <img src="project1-img3.jpg" alt="Civic Engagement" class="project-img" onclick="openModal(this)">
+                </div>
+            </div>
+            
+            <div class="experience-card animate delay-2">
+                <h3 class="exp-title">Project 2: Gender and Educational Leadership Analysis</h3>
+                <p class="exp-meta">A Comparative Analysis of Gender and Educational Leadership in Pakistan and the United Kingdom</p>
+                <p>As a co-author and lead researcher, I conducted a comparative study examining gender dynamics in educational leadership across Pakistan and the UK. My responsibilities included developing the research framework, collecting and analyzing mixed-method data, and interpreting cross-national differences in leadership approaches and barriers.</p>
+                <p>The study revealed striking disparities: female leaders in Pakistan face systemic patriarchal impediments that limit their access and advancement, whereas in the UK, developed systemic structures still unevenly favor male leadership. The analysis offered nuanced policy recommendations tailored to each context, ultimately aiming to inform more equitable practices in educational systems.</p>
+                <p><a href="https://pssr.org.pk/article/a-comparative-analysis-of-gender-and-educational-leadership-in-pakistan-and-the-united-kingdom" target="_blank" style="color: var(--accent);">View Publication</a></p>
+                
+                <!-- Project 2 Images -->
+                <div class="project-images">
+                    <img src="project2-img1.jpg" alt="Gender Leadership Study" class="project-img" onclick="openModal(this)">
+                    <img src="project2-img2.jpg" alt="Research Framework" class="project-img" onclick="openModal(this)">
+                    <img src="project2-img3.jpg" alt="Policy Recommendations" class="project-img" onclick="openModal(this)">
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Research Section -->
     <section class="section" id="research">
         <div class="section-content">
@@ -531,7 +722,7 @@
             <div class="experience-card animate delay-1">
                 <h3 class="exp-title">Journal Articles</h3>
                 <ul>
-                    <li>Refugee power and ghostly humanitarianism: An interpretive meta-analysis of Muslim NGOs (Forthcoming)</li>
+                    <li>Refugee power and ghostly humanitarianism: An interpretive meta-analysis of Muslim NGOs (Forrowing)</li>
                     <li>A comparative analysis of gender and educational leadership in Pakistan and the United Kingdom (2021)</li>
                     <li>Consciousness Raising in the New Woman of Shobhaa De's novels (2020)</li>
                 </ul>
@@ -543,33 +734,6 @@
                     <li>"Echoes in the Ether: Proto-Cybergothic Landscapes" - International Conference on Digital Landscapes (2024)</li>
                     <li>"Corpus-Assisted Ideological Discourse of Ismat Chughtai's All for a Husband" (2021)</li>
                     <li>"Stylistic Analysis of Adjective Use in OpIndia's Anti-Muslim News Headlines" (2021)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Interests Section -->
-    <section class="section" id="interests">
-        <div class="section-content">
-            <h2 class="section-title">Areas of Interest</h2>
-            
-            <div class="experience-card animate delay-1">
-                <h3 class="exp-title">Theoretical Interests</h3>
-                <ul>
-                    <li>Spectropolitics of Aid and Displacement</li>
-                    <li>Climate Justice and Faith-Based Giving</li>
-                    <li>Ethics of International Nonprofit Governance</li>
-                    <li>Muslim Volunteering Traditions</li>
-                </ul>
-            </div>
-            
-            <div class="experience-card animate delay-2">
-                <h3 class="exp-title">Analytical Expertise</h3>
-                <ul>
-                    <li>Qualitative & Quantitative Analysis</li>
-                    <li>Academic & Editorial Writing</li>
-                    <li>NVivo, SPSS, Voyant Tools</li>
-                    <li>APA/MLA Formatting</li>
                 </ul>
             </div>
         </div>
@@ -608,6 +772,12 @@
         </div>
     </section>
     
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
     <script>
         // Smooth scrolling with error handling
         function scrollToSection(sectionId) {
@@ -635,6 +805,37 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+        
+        // Download Case Study function
+        function downloadCaseStudy() {
+            const caseStudyUrl = 'Case_Study_Styled_PDF_Yousra_Ashraf.pdf';
+            const link = document.createElement('a');
+            link.href = caseStudyUrl;
+            link.download = 'Yousra_Ashraf_Case_Study.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Modal functions for image popup
+        function openModal(img) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+        
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        
+        // Close modal when clicking outside of image
+        window.onclick = function(event) {
+            const modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                closeModal();
+            }
         }
         
         // Animate sections when they come into view
